@@ -3,6 +3,7 @@ package com.example.isimsehiroyunu;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
@@ -29,6 +30,8 @@ public class SureliOyunActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sureli_oyun);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         ilBilgi = (TextView) findViewById(R.id.txtIlBilgiS);
         harfAlani = (TextView) findViewById(R.id.txtHarfAlaniS);
@@ -80,7 +83,7 @@ public class SureliOyunActivity extends AppCompatActivity {
         gelenTahmin = tahminGir.getText().toString();
 
         if (!TextUtils.isEmpty(gelenTahmin)) {
-            if (gelenTahmin.equals(gelenIl)) {
+            if (gelenTahmin.equalsIgnoreCase(gelenIl)) {
                 bolumToplamPuan += toplamPuan;
                 Toast.makeText(getApplicationContext(), "Tebrikler doğru cevap!", Toast.LENGTH_SHORT).show();
                 txtToplamBolumPuani.setText("Toplam Bölüm Puanı: " + bolumToplamPuan);

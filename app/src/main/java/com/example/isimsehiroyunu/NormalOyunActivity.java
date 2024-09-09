@@ -3,6 +3,7 @@ package com.example.isimsehiroyunu;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -40,6 +41,8 @@ public class NormalOyunActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_normal_oyun);
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         ilBilgi = (TextView) findViewById(R.id.txtIlBilgiN);
         harfAlani = (TextView) findViewById(R.id.txtHarfAlaniN);
         tahminGir = (EditText) findViewById(R.id.edtTxtTahminGirN);
@@ -71,7 +74,7 @@ public class NormalOyunActivity extends AppCompatActivity {
         gelenTahmin = tahminGir.getText().toString();
 
         if (!TextUtils.isEmpty(gelenTahmin)) {
-            if (gelenTahmin.equals(gelenIl)) {
+            if (gelenTahmin.equalsIgnoreCase(gelenIl)) {
                 bolumToplamPuan += toplamPuan;
                 Toast.makeText(getApplicationContext(), "Tebrikler doğru cevap!", Toast.LENGTH_SHORT).show();
                 txtToplamBolumPuani.setText("Toplam Bölüm Puanı: " + bolumToplamPuan);
